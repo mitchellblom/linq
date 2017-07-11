@@ -75,6 +75,15 @@ namespace linq
             var numberCount = numbers2.Count;
             Console.WriteLine(numberCount);
 
+            // How much money have we made?
+            List<double> purchases = new List<double>()
+            {
+                2340.29, 745.31, 21.76, 34.03, 4786.45, 879.45, 9442.85, 2454.63, 45.65
+            };
+
+            var numberSum = purchases.Sum(purchase => purchase);
+            Console.WriteLine(numberSum);
+
         }
     }
 
