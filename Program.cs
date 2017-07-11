@@ -8,6 +8,9 @@ namespace linq
     {
         static void Main(string[] args)
         {
+
+        // Restriction/Filtering Operations
+
             // Find the words in the collection that start with the letter 'L'
             List<string> fruits = new List<string>() {"Lemon", "Apple", "Orange", "Lime", "Watermelon", "Loganberry"};
 
@@ -30,6 +33,8 @@ namespace linq
             foreach (int number in fourSixMultiples) {
                 Console.WriteLine($"{number}");
             }
+
+        // Ordering Operations
 
             // Order these student names alphabetically, in descending order (Z to A)
             List<string> names = new List<string>()
@@ -58,6 +63,17 @@ namespace linq
             foreach (int number in ascendingNumbers) {
                 Console.WriteLine($"{number}");
             }
+
+        // Aggregate Operators
+
+            // Output how many numbers are in this list
+            List<int> numbers2 = new List<int>()
+            {
+                15, 8, 21, 24, 32, 13, 30, 12, 7, 54, 48, 4, 49, 96
+            };
+
+            var numberCount = numbers2.Count;
+            Console.WriteLine(numberCount);
 
         }
     }
