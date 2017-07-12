@@ -100,7 +100,7 @@ namespace linq
             {
                 66, 12, 8, 27, 82, 34, 7, 50, 19, 46, 81, 23, 30, 4, 68, 14
             };
-            
+
             var runSquares = wheresSquaredo.TakeWhile(taco => Math.Sqrt(taco)%1 != 0);
 
             foreach (int number in runSquares) {
@@ -147,7 +147,53 @@ namespace linq
                 {
                     Console.WriteLine($"   {customer.Name} {customer.Balance}");
                 }
-            }   
+            }
+
+            // TASK: As in the previous exercise, you're going to output the millionaires, 
+            // but you will also display the full name of the bank. You also need to sort the millionaires' names, ascending by their LAST name.
+            
+            // Create some banks and store in a List
+            List<Bank> banks = new List<Bank>() {
+                new Bank(){ Name="First Tennessee", Symbol="FTB"},
+                new Bank(){ Name="Wells Fargo", Symbol="WF"},
+                new Bank(){ Name="Bank of America", Symbol="BOA"},
+                new Bank(){ Name="Citibank", Symbol="CITI"},
+            };
+
+            // Create some customers and store in a List
+            List<Customer> customers2 = new List<Customer>() {
+                new Customer(){ Name="Bob Lesman", Balance=80345.66, Bank="FTB"},
+                new Customer(){ Name="Joe Landy", Balance=9284756.21, Bank="WF"},
+                new Customer(){ Name="Meg Ford", Balance=487233.01, Bank="BOA"},
+                new Customer(){ Name="Peg Vale", Balance=7001449.92, Bank="BOA"},
+                new Customer(){ Name="Mike Johnson", Balance=790872.12, Bank="WF"},
+                new Customer(){ Name="Les Paul", Balance=8374892.54, Bank="WF"},
+                new Customer(){ Name="Sid Crosby", Balance=957436.39, Bank="FTB"},
+                new Customer(){ Name="Sarah Ng", Balance=56562389.85, Bank="FTB"},
+                new Customer(){ Name="Tina Fey", Balance=1000000.00, Bank="CITI"},
+                new Customer(){ Name="Sid Brown", Balance=49582.68, Bank="CITI"}
+            };
+
+            var millionaireReport = from customer in customers
+                where customer.Balance >= 1000000
+                orderby customer.Name descending
+                select customer;
+
+            Console.WriteLine("Millionaire Names: ");
+            foreach (var customer in millionaireReport)
+            {
+                Console.WriteLine($"{customer.Name} at {customer.Bank}");
+            }
+
+            var peopleWithFullBankNames =
+                from bank in banks
+                join customer in customers2 on bank.Symbol equals customer.Bank
+                select new { Bank = bank.Name, Customer = customer.Name}; 
+
+            foreach (var person in peopleWithFullBankNames)
+            {
+                    Console.WriteLine($"{person.Customer} banks at {person.Bank}");
+            }
 
         }
 
@@ -156,6 +202,12 @@ namespace linq
             public string Name { get; set; }
             public double Balance { get; set; }
             public string Bank { get; set; }
+        }
+
+        public class Bank
+        {
+            public string Symbol { get; set; }
+            public string Name { get; set; }
         }
 
     }
