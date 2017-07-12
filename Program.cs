@@ -100,15 +100,12 @@ namespace linq
             {
                 66, 12, 8, 27, 82, 34, 7, 50, 19, 46, 81, 23, 30, 4, 68, 14
             };
+            
+            var runSquares = wheresSquaredo.TakeWhile(taco => Math.Sqrt(taco)%1 != 0);
 
-            // // foreach (int number in ascendingNumbers) {
-            // //     wheresSquaredo.Add(number);
-            // //     double squareRoot = Math.Sqrt(number);
-            // //     Console.WriteLine(squareRoot);
-            // //     if (number%squareRoot == squareRoot) {
-            // //         break;
-            // //     }
-            // // }
+            foreach (int number in runSquares) {
+                Console.WriteLine(number);
+            }
 
             // // Build a collection of customers who are millionaires
             // // Given the same customer set, display how many millionaires per bank.
